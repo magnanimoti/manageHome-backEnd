@@ -6,7 +6,7 @@ var host = "http://localhost:3000";
 
 describe("Controle de controladores", function(){
 	
-	describe(" POST /controladodres.json criar [controlador]", function(){
+	describe(" POST /controladores.json criar [controlador]", function(){
 		it("returns status code 201 e  mensagem de [controlador] criado",function(done){
 			request.post({url:host +"/controladores.json",form: {nome:'mini', ip: '192.168.0.3'}}, function(error, response, body){
 				if(response === undefined){
@@ -55,7 +55,7 @@ describe("Controle de controladores", function(){
 					console.log("Não consegui localizar o servidor");
 					expect(503).toBe(200);
 				}else{
-					console.log(body);
+					//console.log(body);
 					expect(response.statusCode).toBe(200);
 				}	
 				done();

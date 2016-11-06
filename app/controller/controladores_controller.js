@@ -23,6 +23,17 @@ var ControladoresController = {
 			}
 		});
 	},
+	ultimo: function(request, response, next) {
+		Controlador.consultarUltimo(function(retorno){
+			if(retorno.error){
+				response.status(500).send({
+					error: 'erro ao buscar ultimo controlador (' + retorno.message + ')'
+				});
+			}else{
+				response.status(200).send(retorno.controlador);
+			}
+		});		
+	},
 	criar: function(request,response, next){
 		var controlador = new Controlador();
 		controlador.nome=request.body.nome;
