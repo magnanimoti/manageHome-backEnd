@@ -1,11 +1,12 @@
 var net = require('net');
 
-var SocketServer = function(){
+var TcpServer = function(){
 	var server = net.createServer();
 	server.listen(9090, function() {  
 	 	console.log('server listening to %j', server.address());
 	});	
-	server.on('connection', handleConnection); 
+	server.on('connection', handleConnection);
+
  	function handleConnection(conn) {  
 	   //console.log(conn);
 	   var remoteAddress = conn.remoteAddress + ':' + conn.remotePort;
@@ -31,4 +32,4 @@ var SocketServer = function(){
    	};
  
 };
-module.exports = SocketServer;
+module.exports = TcpServer;

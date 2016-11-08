@@ -4,7 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var SocketServer = require('./app/comunicacao/socketServer');
+var TcpServer = require('./app/comunicacao/tcpServer');
+var UdpServer = require('./app/comunicacao/udpServer');
 
 var routes = require('./app/routes/index');
 
@@ -15,45 +16,18 @@ app.set('views', path.join(__dirname, 'app/views'));
 app.set('view engine', 'jade');
 //----------------------------------------
 
- var test = new SocketServer();
- // var server = net.createServer();  
- // server.on('connection', test.handleConnection());
+ var tcp = new TcpServer();
+ var udp = new UdpServer();
 
- // server.listen(9000, function() {  
-	// console.log('server listening to %j', server.address());
- // });
+ //--------------------------------------------
 
-// server.listen(9000, function() {  
-//   console.log('server listening to %j', server.address());
-// });
-// function handleConnection(conn) {  
-//   var remoteAddress = conn.remoteAddress + ':' + conn.remotePort;
-//   console.log('new client connection from %s', remoteAddress);
 
-//   conn.on('data', onConnData);
-//   conn.once('close', onConnClose);
-//   conn.on('error', onConnError);
-
-//   function onConnData(d) {
-//     console.log('connection data from %s: %j', remoteAddress, d);
-//     console.log(d.toString());
-//     //conn.write(d);
-//   }
-
-//   function onConnClose() {
-//     console.log('connection from %s closed', remoteAddress);
-//   }
-
-//   function onConnError(err) {
-//     console.log('Connection %s error: %s', remoteAddress, err.message);
-//   }
-// }
 //---------------------
 
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
+app.use(logger('dev'));	
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
