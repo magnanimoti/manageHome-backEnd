@@ -19,7 +19,7 @@ var TcpServer = function(){
 	   	function onConnData(d) {
 	    	console.log('connection data from %s: %j', remoteAddress, d);
 	     	console.log(d.toString());
-	     	//conn.write(d);
+	     	conn.write(d);
 	   	}
 
 	   	function onConnClose() {
@@ -29,7 +29,7 @@ var TcpServer = function(){
 	   	function onConnError(err) {
 	    	console.log('Connection %s error: %s', remoteAddress, err.message);
 	   	}
-   	};
+   	}
  
 };
 module.exports = TcpServer;

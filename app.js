@@ -4,8 +4,12 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var TcpServer = require('./app/comunicacao/tcpServer');
-var UdpServer = require('./app/comunicacao/udpServer');
+
+var net = require('net');
+
+var TcpServer = require('./app/conexao/tcpServer');
+var UdpServer = require('./app/conexao/udpServer');
+var TcpClient = require('./app/conexao/tcpClient');
 
 var routes = require('./app/routes/index');
 
@@ -16,8 +20,10 @@ app.set('views', path.join(__dirname, 'app/views'));
 app.set('view engine', 'jade');
 //----------------------------------------
 
- var tcp = new TcpServer();
+ //var tcpServ = new TcpServer();
  var udp = new UdpServer();
+ //var tcpCli = new TcpClient({host:'127.0.0.1', port: 9090});
+ //tcpCli.conectar();
 
  //--------------------------------------------
 
